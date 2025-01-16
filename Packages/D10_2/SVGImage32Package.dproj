@@ -29,11 +29,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-<<<<<<< HEAD
         <DCC_DcuOutput>$(FWLIB)\dcu\$(Platform)\$(Config)</DCC_DcuOutput>
-=======
-        <DCC_DcuOutput>$(FWLIB)\dcu\$(Platform)</DCC_DcuOutput>
->>>>>>> 1598ee4 (IAV | Ajuste pacotes para compilação.)
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -122,13 +118,8 @@
                     <Source Name="MainSource">SVGImage32Package.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-<<<<<<< HEAD
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\ibmonitor250.bpl">Embarcadero InterBase Express Monitoring</Excluded_Packages>
-=======
-                    <Excluded_Packages Name="C:\Users\prog1\bin\fwdsk\delphi\bin\oGeradorCodigo.bpl">ORION - Plugins para Delphi7</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
->>>>>>> 1598ee4 (IAV | Ajuste pacotes para compilação.)
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
