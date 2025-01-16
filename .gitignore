@@ -69,3 +69,4 @@ __recovery/
 modules/
 
 Demo/Bin
+*.res
