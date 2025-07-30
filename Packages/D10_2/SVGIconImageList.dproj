@@ -40,7 +40,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>$(FWLIB)\dcu\$(Platform)</DCC_DcuOutput>
+        <DCC_DcuOutput>$(FWLIB)\dcu\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -54,7 +54,7 @@
         <DCC_Description>Ethea SVGIconImageList VCL components</DCC_Description>
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <DllSuffix>250</DllSuffix>
-        <DCC_UnitSearchPath>..\..\Source;..\..\Image32\Source;$(FWLIB)\dcp\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\Source;..\..\Image32\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_BplOutput>$(FWLIB)\bpl\$(Platform)</DCC_BplOutput>
@@ -125,8 +125,9 @@
                     <Source Name="MainSource">SVGIconImageList.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\prog1\bin\fwdsk\delphi\bin\oGeradorCodigo.bpl">ORION - Plugins para Delphi7</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\19.0\bpl\Win32\dclSVGIconImageList250.bpl">File C:\Users\Public\Documents\Embarcadero\Studio\19.0\bpl\Win32\dclSVGIconImageList250.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\ibmonitor250.bpl">Embarcadero InterBase Express Monitoring</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
