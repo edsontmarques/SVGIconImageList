@@ -1,8 +1,8 @@
 ﻿# SVGIconImageList [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Three engines to render SVG (Delphi Image32, Skia4Delphi, Direct2D wrapper) and four components to simplify use of SVG images (resize, fixedcolor, grayscale...)
+## Four engines to render SVG (Delphi Image32, SVGMagic, Skia4Delphi, Direct2D wrapper) and four components to simplify use of SVG images (resize, fixedcolor, grayscale...)
 
-### Actual official version 4.4.8 (VCL+FMX)
+### Actual official version 4.7.4 (VCL+FMX)
 
 | Component | Description |
 | - | - |
@@ -10,6 +10,11 @@
 | ![SVGIconVirtualImageListComponentIcon.png](./Packages/SVGIconVirtualImageListComponentIcon.png) | **TSVGIconVirtualImageList** is a special "virtual" ImageList for Delphi linked to an SVGIconImageCollection (only for VCL) to simplify use of SVG Icons (resize, opacity, grayscale and more...) |
 | ![SVGIconImageComponentIcon.png](./Packages/SVGIconImageComponentIcon.png) | **TSVGIconImage** is an extended Image component for Delphi (VCL+FMX) to show any SVG image directly or included into a an SVGIconImageList with all functionality (stretch, opacity, grayscale and more...) |
 | ![SVGIconImageListComponentIcon.png](./Packages/SVGIconImageListComponentIcon.png) | **TSVGIconImageList** is an extended ImageList for Delphi (VCL+FMX) with an embedded SVG image collection. Use this component to simplify replace of ImageList for older Delphi Apps and obtain auto-scaling of Icons! |
+
+## New integration with SVGMagic Library for Animated SVG
+Starting with version 4.6.0, a new Delphi/Native library has been added to the project.
+
+This library contains a unique feature: the ability to **display animated SVG files**. In the current implementation, the library is used as a new available rendering engine for the standard SvgIconImageList components, but other components are available for displaying animated SVGs, as shown in the SVGMagic-specific demo.
 
 ## New Setup for automatic installation of components
 
@@ -52,14 +57,25 @@ Another feature available from Delphi 10.4 version, is that **TSVGIconImageColle
 
 ## Choose your preferred SVG engine!
 
-There are three implementation:
+There are four implementations for VCL (three for FMX):
 
-- **Native Delphi Image32** (default), uses Image32 library by Angus Johnson
+- **Native Delphi Image32** (default), uses Image32 library by Angus Johnson (VCL + FMX)
 
-- Using **Skia4Delphi** library, a cross-platform 2D graphics API based on Google's Skia Graphics Library
+- **SVGMagic**, advanced SVG engine by Ursa Minor Ltd. with **unique support for animated SVG files** (VCL only)
 
-- A wrapper to the native Windows **Direct2D** implementation
+- Using **Skia4Delphi** library, a cross-platform 2D graphics API based on Google's Skia Graphics Library (VCL + FMX)
 
+- A wrapper to the native Windows **Direct2D** implementation (VCL only)
+
+To choose your preferred Engine, you must edit SVGIconImageList.inc in the correct section:
+
+ for VCL, enabling: `{$DEFINE Image32_SVGEngine}`, `{$DEFINE SVGMagic_Engine}`, or `{$DEFINE Skia_SVGEngine}`
+
+ for FMX, enabling: `{$DEFINE FMX_Image32_SVGEngine}` or `{$DEFINE FMX_Skia_SVGEngine}`
+
+By Default Image32_SVGEngine is Enabled.
+
+**Note:** SVGMagic is the only engine that fully supports animated SVG files, making it the ideal choice for applications requiring SVG animations.
 
 ## Performance comparison
 
@@ -71,7 +87,7 @@ Count | Icon set        | Image32 |    D2D |Skia4Delphi|
  654  | Papirus         |  2750ms<sup>(1)</sup> |  937ms | 1266ms<sup>(1)</sup> |
 5366  | Material-Design | 11015ms | 12001ms | 10688ms   |
 
-As you can see, the three engines perform differently depending on the icons and their complexity.
+As you can see, the engines perform differently depending on the icons and their complexity.
 
 <sup>(1)</sup>Notice that Image32 and Skia4Delphi are the only engines capable of rendering blur effect (that is always slow to calculate): this is the reason of "slow" performance to render Papirus icons that contains blur effect.
 
@@ -91,9 +107,23 @@ As you can see, the three engines perform differently depending on the icons and
 
 ### UTILITIES
 
-The [SVG Viewer Demo](https://ethea.it/docs/svgiconimagelist/SVG-Viewer-(VCL).html) is useful to check the rendering quality of the engines available.
+The [SVG Viewer Demo](https://ethea.it/docs/svgiconimagelist/SVG-Viewer-(VCL).html) is useful to check the rendering quality of the engines available, including the new SVGMagic engine.
 
-The [SVG Icon Explorer utility](https://ethea.it/docs/svgiconimagelist/SVGIconExplorer.html) is useful to explore and preview your svg image collections.
+The [SVG Icon Explorer utility](https://ethea.it/docs/svgiconimagelist/SVGIconExplorer.html) utility is useful to explore and preview your svg image collections.
+
+**All demo applications have been updated to support and test the new SVGMagic engine**, including its unique capability to render animated SVG files.
+
+### Animated SVG
+
+The **SVGMagic Demo** located in **Demo\SVGMagic** folder showcases the SVGMagic library components with a comprehensive demonstration for animated SVG including:
+- TWSVGImage, TWSVGImageButton, TWSVGImageList components
+- Styled checkboxes and radio buttons with SVG graphics
+- SVG browser with animation support and real-time control
+- Real-world UI examples (banking and payment forms)
+- Full demonstration of animated SVG rendering capabilities
+Notice that those components are "specific" of SVGMagic Library, because they manage SVG animations.
+
+### SVG Shell Extensions Project
 
 You can use [SVG Shell Extensions](https://github.com/EtheaDev/SVGShellExtensions) if you want to see your icons directly into Windows Explorer or you want to edit them using a powerful **SVG Text Editor**.
 
@@ -108,6 +138,59 @@ A similar project made by Ethea for Icon Fonts: [https://github.com/EtheaDev/Ico
 Related links: [embarcadero.com](https://www.embarcadero.com) - [learndelphi.org](https://learndelphi.org)
 
 ### RELEASE NOTES
+16 Jun 2026 - version 4.7.4
+- Removed Build for Windows ARM Platform by Installer
+- Fixed "DisableOpacity" value in Icons with TToolBar/DisabledImageList
+
+11 Apr 2026 - version 4.7.3
+- Aligned to Image32 ver. 4.9 of 8 April 2026
+
+20 Mar 2026 - version 4.7.2
+- Added support for ARM Platform in Delphi 13.1
+- Fixed registration of Env Variable SVGICONDIR for 64-bit IDE
+
+02 Mar 2026 - version 4.7.1
+- Fixed Setup for Delphi 13.0 and 13.1
+
+27 Feb 2026 - version 4.7.0
+- Optimized drawing of icons in FMX
+- Fixed FMX SvgIconImagelist Insert Icon check dup names
+- Fixed Clear Icon-Set Drop Down in Download from web Form
+- Added supporto for Delphi 13.1
+- Fixed Rendering Symbol fonts with Image32
+- Aligned to Image32 ver.4.9 of 20 Dec 2025
+
+29 Nov 2025 - version 4.6.2
+- Fixed Component Editor for older Delphi versions
+
+28 Nov 2025 - version 4.6.1
+- Added SkiaSVGUtils.pas to fix Skia rendering
+- Fixed Range Check error for SVGMagic engine
+- Fixed Setup for D10_4 to DXE3
+- Reformat Packages for Build with Android and iOS platforms
+- Reformat Packages for Build with MacOSX platform
+
+16 Nov 2025 - version 4.6.0
+- Added SVGMagic engine support for VCL applications
+- Full support for animated SVG files (available only with SVGMagic Library)
+- Created Packages of SVGMagic for all Delphi versions
+- Added SVGMagic Demo showcasing animated SVG capabilities
+- Updated all demo applications to support and test SVGMagic engine
+
+04 Nov 2025 - version 4.5.3
+- Fixed Delphi 12 Packages for Setup
+- Separated defines for VCL Apps and FMX Apps
+
+31 Oct 2025 - version 4.5.2
+- Aligned to Image32 ver.4.9 of 08 October
+- Added support for Dark-Lite FMX Component Editor
+
+17 Oct 2025 - version 4.5.1
+- Aligned to Image32 ver.4.9 of 28 September
+
+07 Sep 2025 - version 4.5.0
+- Aligned to Image32 ver.4.9 to fix some bugs
+
 23 Aug 2025 - version 4.4.8
 - Aligned to Image32 ver.4.9 to fix a serious bug
 
@@ -469,7 +552,7 @@ Take care of TSVGIconVirtualImageList.Collection renamed to SVGIconVirtualImageL
 
 ### THANKS TO
 
-These components uses the followin libraries:
+These components uses the following libraries:
 
 - Image32 library by [Angus Johnson](https://angusj.com/image32/Docs/_Body.htm)
 
@@ -477,8 +560,16 @@ These components uses the followin libraries:
 
   Copyright [Boost Software License Version 1](https://www.boost.org/LICENSE_1_0.txt)
 
-- Skia4Delphi Library by [the autohors](https://skia4delphi.org/)
+- SVGMagic library by Ursa Minor Ltd.
+
+  These files are included in the SVGMagic/source folder
+
+  Advanced SVG 1.1 rendering engine with full support for animated SVG files
+
+- Skia4Delphi Library by [the authors](https://skia4delphi.org/)
 
   Copyright [MIT-License](https://github.com/skia4delphi/skia4delphi?tab=MIT-1-ov-file)
 
-Many thanks to **Vincent Parrett** and **Kiriakos Vlahos** for their great contibution.
+Many thanks to **Vincent Parrett** and **Kiriakos Vlahos** for their great contribution.
+
+Thanks to George Birbilis for Package updates, build and test with Android, iOS and OSX platform

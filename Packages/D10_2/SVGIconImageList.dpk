@@ -31,11 +31,22 @@ package SVGIconImageList;
 {$IMPLICITBUILD OFF}
 
 requires
-  vcl,
-  VclSmp,
-  vclimg,
-  RESTComponents,
-  SVGIconImageListRestClient;
+  vcl
+  , VclSmp
+  , vclimg
+  , RESTComponents
+  , SVGIconImageListRestClient
+  {$IFDEF Image32_SVGEngine}
+  , SVGImage32Package
+  {$ENDIF}
+  {$IFDEF Skia_SVGEngine}
+  , Skia.Package.VCL
+  , Skia.Package.RTL
+  {$ENDIF}
+  {$IFDEF SVGMagic_Engine}
+  , SVGMagicPackage
+  {$ENDIF}
+  ;
 
 contains
   SVGIconImage in '..\..\Source\SVGIconImage.pas',
@@ -45,6 +56,20 @@ contains
   SVGIconItems in '..\..\Source\SVGIconItems.pas',
   SVGIconVirtualImageList in '..\..\Source\SVGIconVirtualImageList.pas',
   SVGIconImageListBase in '..\..\Source\SVGIconImageListBase.pas',
+  {$IFDEF PreferNativeSvgSupport}
+  D2DSVGFactory in '..\..\Source\D2DSVGFactory.pas',
+  Winapi.D2DMissing in '..\..\Source\Winapi.D2DMissing.pas',
+  {$ENDIF}
+  {$IFDEF Image32_SVGEngine}
+  Image32SVGFactory in '..\..\Source\Image32SVGFactory.pas',
+  {$ENDIF}
+  {$IFDEF Skia_SVGEngine}
+  SkiaSVGFactory in '..\..\Source\SkiaSVGFactory.pas',
+  SkiaSVGUtils in '..\..\Source\SkiaSVGUtils.pas',
+  {$ENDIF}
+  {$IFDEF SVGMagic_Engine}
+  SVGMagicFactory in '..\..\Source\SVGMagicFactory.pas',
+  {$ENDIF}
   SVGInterfaces in '..\..\Source\SVGInterfaces.pas',
   dlgExportPNG in '..\..\Source\dlgExportPNG.pas' {ExportToPNGDialog};
 

@@ -3,7 +3,7 @@
 {       SVG Icon ImageList: An extended ImageList for Delphi/VCL               }
 {       to simplify use of Icons (resize, colors and more...)                  }
 {                                                                              }
-{       Copyright (c) 2019-2025 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2019-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributors:                                                          }
 {         Nicola Tambascia, Vincent Parrett                                    }
@@ -38,7 +38,6 @@ uses
   UDataModule in '..\Source\UDataModule.pas' {ImageDataModule: TDataModule},
   SVGRESTClientFormUnit in '..\..\Packages\SVGRESTClientFormUnit.pas' {SVGRESTClientSearchForm},
   SVGIconSetFormUnit in '..\..\Packages\SVGIconSetFormUnit.pas' {SVGIconSetForm};
-
 {$R *.res}
 
 begin
