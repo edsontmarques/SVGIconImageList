@@ -109,6 +109,12 @@
             <Platforms>Win32;Win64</Platforms>
             <Enabled>True</Enabled>
         </BuildGroupProject>
+        <BuildGroupProject Include="SVGIconImageListRestClient.dproj">
+            <ProjectGuid>{87B5916D-6C04-4AF0-8774-D9FAD373EF2F}</ProjectGuid>
+            <Configurations>Release</Configurations>
+            <Platforms>Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
         <BuildGroupProject Include="dclSVGIconImageList.dproj">
             <ProjectGuid>{1E417A1F-FB83-4DB2-AC88-C8A00536AE33}</ProjectGuid>
             <Configurations>Release</Configurations>
@@ -119,6 +125,12 @@
             <ProjectGuid>{99446A60-957E-4C51-852A-60C618078853}</ProjectGuid>
             <Configurations>Release</Configurations>
             <Platforms>Win32</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+        <BuildGroupProject Include="SVGImage32Package.dproj">
+            <ProjectGuid>{B99FE27C-AFB6-4F9D-81C1-CB6C06A5075F}</ProjectGuid>
+            <Configurations>Release</Configurations>
+            <Platforms>Win32;Win64</Platforms>
             <Enabled>True</Enabled>
         </BuildGroupProject>
     </ItemGroup>

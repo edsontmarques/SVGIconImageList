@@ -29,7 +29,8 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>..\..\Lib\D10_2\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_DcuOutput>$(FWLIB)\dcu\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -44,6 +45,8 @@
         <DCC_Description>Image32 2D Graphic Library - Copyright Angus Johnson</DCC_Description>
         <DllSuffix>250</DllSuffix>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_BplOutput>$(FWLIB)\bpl\$(Platform)</DCC_BplOutput>
+        <DCC_DcpOutput>$(FWLIB)\dcp\$(Platform)</DCC_DcpOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -111,7 +114,10 @@
                 <Source>
                     <Source Name="MainSource">SVGImage32Package.dpk</Source>
                 </Source>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\ibmonitor250.bpl">Embarcadero InterBase Express Monitoring</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
