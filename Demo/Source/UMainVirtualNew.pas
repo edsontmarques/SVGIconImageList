@@ -401,8 +401,10 @@ begin
     UpdateButtons;
     UpdateListView;
     UpdateTreeView;
-    GrayScaleCheckBox.Checked := ImageDataModule.SVGIconImageCollection.GrayScale;
-    FixedColorComboBox.Selected := ImageDataModule.SVGIconImageCollection.FixedColor;
+    //GrayScale and FixedColor are set at VirtualImageList level (per-VIL),
+    //so read them back from the VirtualImageList and not from the shared collection
+    GrayScaleCheckBox.Checked := SVGIconVirtualImageList.GrayScale;
+    FixedColorComboBox.Selected := SVGIconVirtualImageList.FixedColor;
     OpacityTrackBar.Position := ImageDataModule.SVGIconImageCollection.Opacity;
   finally
     FUpdating := False;
